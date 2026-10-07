@@ -1,0 +1,11 @@
+build*/
+data/
+lists*/
+runs/
+*.gguf
+*.bin
+*.npy
+__pycache__/
+venv*/
+.venv/
+*.log

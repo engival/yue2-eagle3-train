@@ -36,8 +36,8 @@ add_subdirectory(train)
 
 # The dumper checks its sampler port against yue2.cpp's own sample_step, cut out
 # of a yue2.cpp checkout at configure time (dump/CMakeLists.txt).
-option(YUE2_EAGLE3_BUILD_DUMP "Build yue2mtp-dump (needs a yue2.cpp checkout, YUE2_CPP_DIR)" ON)
-set(YUE2_CPP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../yue2.cpp" CACHE PATH "yue2.cpp source checkout")
+option(YUE2_EAGLE3_BUILD_DUMP "Build yue2mtp-dump (needs the yue2.cpp submodule, or YUE2_CPP_DIR)" ON)
+set(YUE2_CPP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/yue2.cpp" CACHE PATH "yue2.cpp source checkout (default: the yue2.cpp submodule)")
 if(YUE2_EAGLE3_BUILD_DUMP)
 	add_subdirectory(dump)
 endif()

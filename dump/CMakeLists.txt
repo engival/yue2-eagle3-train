@@ -6,7 +6,7 @@
 set(Y2M_STAGE_AR ${YUE2_CPP_DIR}/src/stage_ar.cpp)
 if(NOT EXISTS ${Y2M_STAGE_AR})
 	message(FATAL_ERROR "yue2mtp-dump needs a yue2.cpp checkout: ${Y2M_STAGE_AR} not found. "
-		"Pass -DYUE2_CPP_DIR=/path/to/yue2.cpp, or -DYUE2_EAGLE3_BUILD_DUMP=OFF to build the trainer only.")
+		"Run git submodule update --init yue2.cpp, pass -DYUE2_CPP_DIR=/path/to/yue2.cpp, or -DYUE2_EAGLE3_BUILD_DUMP=OFF to build the trainer only.")
 endif()
 set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${Y2M_STAGE_AR})
 file(READ ${Y2M_STAGE_AR} Y2M_AR_SRC)

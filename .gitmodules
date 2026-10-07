@@ -2,3 +2,7 @@
 	path = llama.cpp
 	url = https://github.com/engival/llama.cpp.git
 	branch = feat/eagle3-train
+[submodule "yue2.cpp"]
+	path = yue2.cpp
+	url = https://github.com/engival/yue2.cpp.git
+	branch = master

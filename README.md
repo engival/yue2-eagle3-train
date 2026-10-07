@@ -64,18 +64,20 @@ cache index records its SHA-256).
 Needs CMake ≥ 3.16, a C++17 compiler, and for the Vulkan backend a Vulkan driver
 plus `glslc` (same as llama.cpp). The dumper also needs a **yue2.cpp source
 checkout**: its sampler port is unit-tested against yue2.cpp's own
-`sample_step`, cut out of `src/stage_ar.cpp` at configure time. By default it is
-looked for next to this repo (`../yue2.cpp`).
+`sample_step`, cut out of `src/stage_ar.cpp` at configure time. That checkout is
+the `yue2.cpp` submodule, pinned to the commit the port was tested against
+(`-DYUE2_CPP_DIR=/path/to/yue2.cpp` points it elsewhere).
 
 ```bash
-git clone --recursive https://github.com/engival/yue2-eagle3-train.git
+git clone https://github.com/engival/yue2-eagle3-train.git
 cd yue2-eagle3-train
-cmake -B build -DCMAKE_BUILD_TYPE=Release -DGGML_VULKAN=ON \
-      -DYUE2_CPP_DIR=/path/to/yue2.cpp
+git submodule update --init      # not --recursive: yue2.cpp's own llama.cpp isn't needed
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DGGML_VULKAN=ON
 cmake --build build -j8
 ```
 
-`-DYUE2_EAGLE3_BUILD_DUMP=OFF` builds the trainer without a yue2.cpp checkout;
+Only yue2.cpp's sources are read; it is not built. `-DYUE2_EAGLE3_BUILD_DUMP=OFF`
+builds the trainer without it;
 `-DGGML_VULKAN=OFF` gives a CPU-only build (enough for the gradient check and
 `--backend cpu`, far too slow for real training). Binaries land in
 `build/bin/`: `yue2mtp-dump`, `shaped-dist-test`, `yue2mtp-train`,
